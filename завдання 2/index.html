@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Словник</title>
+
+</head>
+<body>
+    <form id="dictionaryForm">
+        <label for="wordInput">Введіть слово: </label>
+        <input type="text" id="wordInput" required>
+        <button type="button" onclick="searchWord()">Пошук</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        var dictionary = {
+            "програмування": "programming",
+            "мережа": "network",
+            "словник": "dictionary",
+            "черга": "queue"
+        };
+
+        function searchWord() {
+            var wordInput = document.getElementById("wordInput").value.trim().toLowerCase();
+
+            // Перевірка на порожнє поле вводу
+            if (!wordInput) {
+                alert("Будь ласка, введіть слово.");
+                return;
+            }
+
+            // Перевірка на числа
+            if (!isNaN(wordInput)) {
+                alert("Слово не може бути числом.");
+                return;
+            }
+
+            if (dictionary.hasOwnProperty(wordInput)) {
+                document.getElementById("result").innerHTML = "<strong>Переклад:</strong> " + dictionary[wordInput];
+            } else {
+                document.getElementById("result").innerHTML = "<em>Слово не знайдено</em>";
+            }
+
+            document.getElementById("wordInput").value = "";
+        }
+    </script>
+</body>
+</html>
